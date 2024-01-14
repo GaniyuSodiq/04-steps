@@ -5,14 +5,16 @@ const messages = [
   "Invest your new income 🤑",
 ];
 export default function App() {
-  const [step, setStep] = useState(1);
+  let [step, setStep] = useState(1);
   function handlePrevious() {
     //step > 1 && setStep(step - 1);
     if (step > 1) setStep(step - 1);
   }
   function handleNext() {
     //step < 3 && setStep(step + 1);
-    if (step < 3) setStep(step + 1);
+    //if (step < 3) setStep(step + 1);
+
+    step = step + 1;
   }
   return (
     <div className="steps">
