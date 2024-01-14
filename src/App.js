@@ -11,15 +11,27 @@ export default function App() {
   //const [test, setTest] = useState({ name: "Jonas" });
 
   function handlePrevious() {
-    //step > 1 && setStep(step - 1);
-    if (step > 1) setStep(step - 1);
+    //step > 1 && setStep(step - 1); BAD WAY OF SETTING STATE
+
+    if (step > 1) setStep((s) => s - 1); // best way of setting state
+    // take current state as arg into arrow function-
+    // this is a better way of setting state
   }
   function handleNext() {
+    if (step < 3) {
+      setStep((s) => s + 1);
+      //setStep((s) => s + 1);
+    }
+
     //step < 3 && setStep(step + 1);
-    if (step < 3) setStep(step + 1);
+
+    // if (step < 3) {
+    //   setStep((step + 1)); BAD WAY OF SETTING STATE
+    //   setStep(step + 1);
+    // }
 
     //BAD PRACTICE - never mutate a state this way!
-    //Text.name = "Fred";
+    // testt.name = "Fred";
     // THIS IS GOOD PRACTIVE
     //setTest({ name: "Fred" });
   }
@@ -27,9 +39,11 @@ export default function App() {
     <>
       <button
         className="close"
-        // onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))} // my best moment up to this point - i wrote this code myself
-        onClick={() => setIsOpen(!isOpen)}
-        // set isOpen to OPPOSITE of whatever it is currently, simple bcs it is either tru or false
+        // onClick={() => (isOpen ? setIsOpen(false) : setIsOpen(true))}
+        // my best moment up to this point - i wrote this code myself
+        onClick={() => setIsOpen((is) => !is)}
+        // set isOpen to OPPOSITE of whatever it is currently,
+        // simple bcs it is either tru or false
       >
         &times;
       </button>
